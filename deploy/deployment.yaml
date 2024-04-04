@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: java-webapp
+  name: java-webapp
+  namespace: wfdemo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: java-webapp
+  template:
+    metadata:
+      labels:
+        app: java-webapp
+    spec:
+      containers:
+      - image: luisredda/harness-java-demo-k8s:latest-wf
+        imagePullPolicy: IfNotPresent
+        name: harness-java-demo-k8s
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
